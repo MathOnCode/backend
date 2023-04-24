@@ -34,7 +34,7 @@ async def root(payload: Item):
         errors.append("email inválido")
         validForm = False
     if not re.match(regexPhone, payload.phone):
-        errors.append("telefone inválid")
+        errors.append("telefone inválido")
         validForm = False
         
     if validForm == True:    
