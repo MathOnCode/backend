@@ -24,21 +24,17 @@ async def root(payload: Item):
     regexEmail = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     regexPhone = r'^\(\d{2}\)\s\d{4,5}\-\d{4}$'
     
-    validForm = True
     errors = []
     
     if not re.match(regexName, payload.name):
-        errors.append("nome inválido")
-        validForm = False
+        errors.append("nome inválido!")
     if not re.match(regexEmail, payload.email):
-        errors.append("email inválido")
-        validForm = False
+        errors.append("email inválido!")
     if not re.match(regexPhone, payload.phone):
-        errors.append("telefone inválido")
-        validForm = False
+        errors.append("telefone inválido!")
         
-    if validForm == True:    
+    if len(errors) == 0:    
         return {"userData": payload,
                 "message":"Requisição enviada com sucesso!"}
-    else:
-        raise HTTPException(status_code=400, detail=errors)
+    
+    raise HTTPException(status_code=400, detail=errors)
