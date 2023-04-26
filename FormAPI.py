@@ -21,7 +21,7 @@ app.add_middleware(
 async def root(payload: Item):
     
     regexName = r'^[A-Za-z]+(?:\s+[A-Za-z]+)*\s+[A-Za-z]+$'
-    regexEmail = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,s}$'
+    regexEmail = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     regexPhone = r'^\(\d{2}\)\s\d{4,5}\-\d{4}$'
     
     errors = []
