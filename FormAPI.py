@@ -19,4 +19,4 @@ app.add_middleware(
 
 @app.post("/")
 async def root(payload: Item):
-    Response(payload)
+    return Response(payload)
