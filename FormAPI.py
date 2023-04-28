@@ -1,15 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
-from python_modules.formResponse import Response
+from python_modules.formResponse import rootForm_Response
+from python_modules.verificationBackend import rootForm_Verification
+from python_modules.item_schemas import Item
 
 app = FastAPI()
 
-class Item(BaseModel):
-    name: str
-    email: str
-    phone: str
-    
 app.add_middleware(
     CORSMiddleware,
     allow_methods=["*"],
@@ -19,4 +15,6 @@ app.add_middleware(
 
 @app.post("/")
 async def root(payload: Item):
-    return Response(payload)
+        if rootForm_Verification(payload):
+            return rootForm_Response(payload)
+
