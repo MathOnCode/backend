@@ -1,9 +1,8 @@
 import re # módulo de python para trabalhar com expressões regulares (regex)
 
-def userData_Verification(payload):
+def user_data_verification(payload):
 
     errors = []
-    #form_exception = HTTPException(status_code=400, detail=errors) // quando precisar chamar a mesma exceção mais de uma vez, atribui-la a uma variável (não é o caso)
 
     regexName = r'^[A-Za-z]+(?:\s+[A-Za-z]+)*\s+[A-Za-z]+$';
     regexEmail = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
@@ -16,11 +15,4 @@ def userData_Verification(payload):
     if not re.match(regexPhone, payload.phone):
         errors.append("telefone. inválido!")
 
-    if len(errors) > 0:
-        return True, errors 
-    else:
-        return False, "Sucesso ao executar a ação!"
-
-#transformar em objeto e armazenar em uma propriedade
-#como retornar duas coisas em uma mesma função (primeiro status, depois mensagem)
-#primeiro verificação, depois inserção no banco de dados
+    return len(errors) == 0, errors
