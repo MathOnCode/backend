@@ -1,14 +1,11 @@
 import re # módulo de python para trabalhar com expressões regulares (regex)
+from python_modules.regexs import regex_name, regex_email, regex_phone
 
 def user_data_verification(payload):
 
     errors = []
 
-    regex_name = r'^[A-zÁ-õç]+(?:\s+[A-zÁ-õç]+)*\s+[A-zÁ-õç]+$';
-    regex_email = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$';
-    regex_phone = r'^\(\d{2}\)\s\d{4,5}\-\d{4}$';
-
-    if not re.match(regex_name, payload.name):
+    if not re.match(regex_name, payload.name): #tranformar em função
         errors.append("nome inválido!")
     if not re.match(regex_email, payload.email):
          errors.append("email inválido!")
